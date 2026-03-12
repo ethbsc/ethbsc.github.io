@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CNMC.IO · DEXMC.IO · Premium Blockchain Domains</title>
+    <!-- Font Awesome 6 (free) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(145deg, #0b0f17 0%, #131927 100%);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            color: #eef2ff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 1.5rem;
+        }
+
+        .container {
+            max-width: 1280px;
+            width: 100%;
+            margin: 2rem auto;
+        }
+
+        /* header / tagline */
+        .tagline {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .tagline h1 {
+            font-size: 2.5rem;
+            font-weight: 500;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, #c0d0f0, #a0b8e0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .tagline p {
+            font-size: 1.2rem;
+            color: #8f9bb5;
+            margin-top: 0.5rem;
+        }
+
+        /* domain cards grid */
+        .domain-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .card {
+            background: rgba(18, 25, 40, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(75, 130, 200, 0.15);
+            border-radius: 2rem;
+            padding: 2.5rem 1.8rem 2rem 1.8rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(120, 170, 255, 0.1) inset;
+            transition: transform 0.2s ease, border-color 0.2s;
+        }
+
+        .card:hover {
+            border-color: rgba(90, 160, 255, 0.4);
+            transform: translateY(-6px);
+        }
+
+        .domain-name {
+            font-size: 3.2rem;
+            font-weight: 700;
+            line-height: 1.1;
+            letter-spacing: -0.03em;
+            margin-bottom: 0.25rem;
+            word-break: break-all;
+        }
+
+        .domain-name .io {
+            font-weight: 400;
+            color: #4f7eb3;
+        }
+
+        .price-badge {
+            display: inline-block;
+            background: #1e2b41;
+            padding: 0.4rem 1.2rem;
+            border-radius: 40px;
+            font-size: 2rem;
+            font-weight: 600;
+            margin: 1rem 0 1.2rem 0;
+            border: 1px solid #2d405b;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+        }
+
+        .price-badge small {
+            font-size: 1rem;
+            font-weight: 400;
+            color: #a5b9d9;
+            margin-left: 4px;
+        }
+
+        .detail-list {
+            list-style: none;
+            margin: 1.5rem 0 2rem 0;
+            border-top: 1px solid #253043;
+            padding-top: 1.5rem;
+        }
+
+        .detail-list li {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 0.6rem 0;
+            color: #cad1e3;
+            font-size: 1.05rem;
+        }
+
+        .detail-list i {
+            width: 24px;
+            color: #3d7ebf;
+            font-size: 1.3rem;
+        }
+
+        .telegram-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: #2b3f5e;
+            background: linear-gradient(145deg, #1f354f, #1b2a40);
+            padding: 1rem 2rem;
+            width: 100%;
+            border-radius: 60px;
+            font-size: 1.3rem;
+            font-weight: 500;
+            color: white;
+            text-decoration: none;
+            border: 1px solid #3f5a7c;
+            transition: all 0.2s;
+            box-shadow: 0 8px 18px rgba(0,0,0,0.5);
+            margin-top: 1rem;
+        }
+
+        .telegram-btn i {
+            font-size: 1.8rem;
+            color: #29a9e1;
+        }
+
+        .telegram-btn:hover {
+            background: #284b6e;
+            border-color: #5b8dc0;
+            box-shadow: 0 10px 22px rgba(0, 160, 255, 0.2);
+        }
+
+        /* info panel (no broker, no fees) */
+        .trust-panel {
+            background: #0f1622dd;
+            border-radius: 60px;
+            padding: 1.3rem 2rem;
+            margin: 2rem 0 3rem 0;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 2.5rem;
+            border: 1px solid #253a52;
+            backdrop-filter: blur(8px);
+            font-size: 1.2rem;
+        }
+
+        .trust-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #b3ceff;
+        }
+
+        .trust-item i {
+            color: #2fb86e;
+            font-size: 1.4rem;
+        }
+
+        .trust-item strong {
+            color: white;
+            font-weight: 600;
+            margin-left: 4px;
+        }
+
+        /* registrar & payment */
+        .footer-details {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            background: #0a101c;
+            border-radius: 40px;
+            padding: 1.5rem 2.2rem;
+            border: 1px solid #28364e;
+            margin-top: 2.5rem;
+        }
+
+        .registrar {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.1rem;
+        }
+
+        .registrar img {
+            height: 32px;
+            opacity: 0.9;
+        }
+
+        .payment-icons {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            color: #8fa3cc;
+            font-size: 1.1rem;
+        }
+
+        .payment-icons i {
+            font-size: 2rem;
+            filter: drop-shadow(0 2px 4px black);
+            transition: transform 0.1s;
+        }
+
+        .payment-icons span {
+            margin-right: 10px;
+        }
+
+        .note {
+            text-align: center;
+            margin-top: 1.8rem;
+            color: #7d8bb0;
+        }
+
+        hr {
+            border: 0.5px solid #1e2c3e;
+            margin: 2rem 0 1rem;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    
+    <div class="tagline">
+        <h1>⚡ Premium .io · Blockchain ready ⚡</h1>
+        <p>Direct owner sale · No broker · No commission · No hidden fees</p>
+    </div>
+
+    <!-- domain cards -->
+    <div class="domain-grid">
+        <!-- cnmc.io card -->
+        <div class="card">
+            <div class="domain-name">cnmc<span class="io">.io</span></div>
+            <div class="price-badge">$1,500 <small>USD</small></div>
+            <ul class="detail-list">
+                <li><i class="fas fa-check-circle"></i> Registrar: <strong>GoDaddy.com, LLC</strong></li>
+                <li><i class="fas fa-calendar-alt"></i> Blockchain & tech brand fit</li>
+                <li><i class="fas fa-shield-alt"></i> Clean history · no prior use</li>
+                <li><i class="fas fa-coins"></i> Accept all major crypto</li>
+            </ul>
+            <a href="https://t.me/cnmc_io" target="_blank" class="telegram-btn">
+                <i class="fab fa-telegram"></i> @cnmc_io
+            </a>
+        </div>
+
+        <!-- dexmc.io card (notice: your description says dexmc.io, price $600) -->
+        <div class="card">
+            <div class="domain-name">dexmc<span class="io">.io</span></div>
+            <div class="price-badge">$600 <small>USD</small></div>
+            <ul class="detail-list">
+                <li><i class="fas fa-check-circle"></i> Registrar: <strong>GoDaddy.com, LLC</strong></li>
+                <li><i class="fas fa-chart-line"></i> Perfect for DEX / DeFi project</li>
+                <li><i class="fas fa-shield-alt"></i> Instant transfer after payment</li>
+                <li><i class="fas fa-coins"></i> BTC · ETH · USDT · SOL · more</li>
+            </ul>
+            <a href="https://t.me/cnmc_io" target="_blank" class="telegram-btn">
+                <i class="fab fa-telegram"></i> @cnmc_io
+            </a>
+        </div>
+    </div>
+
+    <!-- trust / no broker block -->
+    <div class="trust-panel">
+        <div class="trust-item"><i class="fas fa-user-check"></i> Direct from <strong>owner</strong> · no brokers</div>
+        <div class="trust-item"><i class="fas fa-percent"></i> <strong>0%</strong> commission · zero hidden fees</div>
+        <div class="trust-item"><i class="fas fa-coins"></i> Crypto payment · no extra charges</div>
+    </div>
+
+    <!-- GoDaddy details & crypto payment methods -->
+    <div class="footer-details">
+        <div class="registrar">
+            <i class="fas fa-globe" style="color:#4a7db0; font-size: 2rem;"></i>
+            <span>🏛️ Registrar: <strong>GoDaddy.com, LLC</strong> · domains fully under control</span>
+        </div>
+        <div class="payment-icons">
+            <span>pay with</span>
+            <i class="fab fa-bitcoin" style="color:#f7931a;" title="Bitcoin"></i>
+            <i class="fab fa-ethereum" style="color:#8c8cf0;" title="Ethereum"></i>
+            <i class="fas fa-coins" style="color:#f4b731;" title="Litecoin / USDT / BNB / more"></i>
+            <span style="font-size:1rem;">+ any major crypto</span>
+        </div>
+    </div>
+
+    <!-- telegram contact repeated note (clear CTA) -->
+    <hr>
+    <div style="text-align: center; margin: 2rem 0 1rem;">
+        <div style="display: inline-block; background: #17212b; border-radius: 60px; padding: 0.8rem 2.5rem; border: 1px solid #2b4a6f;">
+            <span style="font-size: 1.4rem; margin-right: 1rem;">📲 interested? </span>
+            <a href="https://t.me/cnmc_io" style="color:#9bc8ff; font-size:1.5rem; font-weight:500; text-decoration:none;">
+                <i class="fab fa-telegram"></i> telegram: @cnmc_io
+            </a>
+        </div>
+    </div>
+
+    <!-- small note about no hidden fees -->
+    <div class="note">
+        ⚡ owner direct sale · no commissions · you only pay the domain price · all crypto accepted ⚡
+    </div>
+    <!-- optional: explicit no broker assurance -->
+    <div style="text-align:center; font-size:0.95rem; color:#5b6f92; margin-top:1.2rem;">
+        <i class="fas fa-lock" style="opacity:0.6;"></i> transfer via GoDaddy or any registrar you choose · no intermediary
+    </div>
+</div>
+</body>
+</html>
